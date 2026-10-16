@@ -598,7 +598,7 @@ footer p.blurb{font-size:.84rem;line-height:1.7;max-width:300px;color:#7f97b8}
       </button>
     </form>
 
-    <p class="track-hint">Try the demo waybill <b>CJGKRS124876KR</b> — or <button type="button" id="demoBtn">load sample shipment</button></p>
+    <p class="track-hint">Try the demo waybill <b>CJGKRS124876KR</b> (or <b>CICGKRS124876KR</b>) — or <button type="button" id="demoBtn">load sample shipment</button></p>
   </div>
 </section>
 
@@ -968,9 +968,12 @@ footer p.blurb{font-size:.84rem;line-height:1.7;max-width:300px;color:#7f97b8}
   const toast     = document.getElementById('toast');
   const toastMsg  = document.getElementById('toastMsg');
 
-  // This is the ONLY code that will reveal the shipment details.
-  // In a real app, this would be replaced by an API call to your database.
-  const VALID_TRACKING_CODES = ['CJGKRS124876KR'];
+  // Both variations are accepted because the stylized "J" on the label
+  // looks like an "I" or "C" to many users.
+  const VALID_TRACKING_CODES = [
+    'CJGKRS124876KR', // Correct code from the label
+    'CICGKRS124876KR' // Common misread of the label
+  ];
 
   /* ---------- Toast ---------- */
   let toastTimer;
@@ -1060,11 +1063,11 @@ footer p.blurb{font-size:.84rem;line-height:1.7;max-width:300px;color:#7f97b8}
         // Error: show toast, keep panel hidden
         showToast('Tracking number not found. Please check and try again.', true);
         
-        // Optional: ensure the panel stays hidden if it was previously opened
+        // Ensure the panel stays hidden
         panel.classList.add('is-hidden');
         panel.classList.remove('reveal');
         
-        // Shake the input field again to indicate an error
+        // Shake the input field to indicate an error
         form.classList.remove('shake');
         void form.offsetWidth;
         form.classList.add('shake');
