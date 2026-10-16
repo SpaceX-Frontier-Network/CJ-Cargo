@@ -5,1060 +5,400 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CJ Cargo — International Express Tracking</title>
 <style>
-/* ============ RESET & TOKENS ============ */
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --navy:#0a1a33;
-  --navy-2:#12305c;
-  --accent:#ff6b35;
-  --accent-2:#ffa94d;
-  --ink:#0f172a;
-  --muted:#64748b;
-  --line:#e5eaf2;
-  --bg:#f5f8fc;
-  --ok:#10b981;
-  --warn:#f59e0b;
-  --pickup:#3b82f6;
-  --radius:18px;
-  --shadow-sm:0 4px 14px rgba(10,26,51,.06);
-  --shadow:0 14px 40px rgba(10,26,51,.10);
-  --shadow-lg:0 30px 70px rgba(3,12,28,.45);
+  --navy:#0a1a33;--navy-2:#12305c;--accent:#ff6b35;--accent-2:#ffa94d;
+  --ink:#0f172a;--muted:#64748b;--line:#e5eaf2;--bg:#f5f8fc;
+  --ok:#10b981;--pickup:#3b82f6;--radius:18px;
+  --shadow:0 14px 40px rgba(10,26,51,.10);--shadow-lg:0 30px 70px rgba(3,12,28,.45);
 }
 html{scroll-behavior:smooth}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  background:var(--bg);color:var(--ink);line-height:1.6;
-  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
-}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
 svg{display:block}
 button,input{font:inherit;color:inherit}
-a{color:inherit}
-
-/* ============ LAYOUT ============ */
 .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
 .icon{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.icon-sm{width:16px;height:16px}
-.icon-lg{width:26px;height:26px}
+.icon-sm{width:16px;height:16px}.icon-lg{width:26px;height:26px}
 
-/* ============ HEADER ============ */
-.site-header{
-  position:sticky;top:0;z-index:80;
-  background:rgba(255,255,255,.88);
-  backdrop-filter:saturate(180%) blur(14px);
-  -webkit-backdrop-filter:saturate(180%) blur(14px);
-  border-bottom:1px solid var(--line);
-}
+.site-header{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;gap:28px;padding:13px 22px;max-width:1180px;margin:0 auto}
-.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--navy);font-weight:800;letter-spacing:-.03em;font-size:1.06rem;white-space:nowrap}
-.brand .logo{width:40px;height:40px;flex:none}
-.brand small{display:block;font-size:.6rem;font-weight:700;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;line-height:1}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--navy);font-weight:800;font-size:1.06rem}
+.brand .logo{width:40px;height:40px}
 .nav-links{display:flex;gap:26px;margin-left:auto;align-items:center}
-.nav-links a{text-decoration:none;font-size:.88rem;font-weight:600;color:#3d4d63;transition:.18s}
-.nav-links a:hover{color:var(--accent)}
-.nav-cta{
-  background:var(--navy);color:#fff !important;padding:9px 18px;border-radius:999px;
-  font-size:.85rem;font-weight:700;transition:.2s;box-shadow:var(--shadow-sm);
-}
-.nav-cta:hover{background:var(--accent);transform:translateY(-1px)}
-.burger{display:none;background:none;border:0;color:var(--navy);cursor:pointer}
+.nav-links a{text-decoration:none;font-size:.88rem;font-weight:600;color:#3d4d63}
+.nav-cta{background:var(--navy);color:#fff!important;padding:9px 18px;border-radius:999px;font-size:.85rem;font-weight:700}
 
-/* ============ HERO ============ */
-.hero{
-  position:relative;overflow:hidden;color:#fff;
-  padding:74px 22px 108px;
-  background:
-    radial-gradient(900px 420px at 78% -12%, rgba(255,107,53,.30), transparent 65%),
-    radial-gradient(700px 400px at 8% 110%, rgba(56,132,255,.30), transparent 62%),
-    linear-gradient(158deg,#08152b 0%,#12305c 55%,#0a1a33 100%);
-}
-.hero::after{
-  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
-  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
-  background-size:56px 56px;
-  mask-image:radial-gradient(circle at 50% 30%,#000 20%,transparent 78%);
-  -webkit-mask-image:radial-gradient(circle at 50% 30%,#000 20%,transparent 78%);
-}
+.hero{position:relative;overflow:hidden;color:#fff;padding:74px 22px 108px;background:radial-gradient(900px 420px at 78% -12%,rgba(255,107,53,.3),transparent 65%),radial-gradient(700px 400px at 8% 110%,rgba(56,132,255,.3),transparent 62%),linear-gradient(158deg,#08152b,#12305c 55%,#0a1a33)}
 .hero-inner{position:relative;z-index:2;max-width:900px;margin:0 auto;text-align:center}
-.pill{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);
-  padding:7px 15px;border-radius:999px;font-size:.76rem;font-weight:700;
-  letter-spacing:.09em;text-transform:uppercase;color:#cfe0ff;
-}
+.pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:7px 15px;border-radius:999px;font-size:.76rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#cfe0ff}
 .pill .dot-live{width:7px;height:7px;border-radius:50%;background:#3ddc97;box-shadow:0 0 0 4px rgba(61,220,151,.22);animation:pulse 1.9s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(61,220,151,.22)}50%{box-shadow:0 0 0 9px rgba(61,220,151,0)}}
-.hero h1{
-  font-size:clamp(2rem,5.2vw,3.35rem);line-height:1.08;letter-spacing:-.035em;
-  font-weight:800;margin:20px 0 14px;
-}
-.hero h1 em{
-  font-style:normal;
-  background:linear-gradient(100deg,var(--accent),var(--accent-2));
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-}
+@keyframes pulse{50%{box-shadow:0 0 0 9px rgba(61,220,151,0)}}
+.hero h1{font-size:clamp(2rem,5.2vw,3.35rem);line-height:1.08;letter-spacing:-.035em;font-weight:800;margin:20px 0 14px}
+.hero h1 em{font-style:normal;background:linear-gradient(100deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p.sub{color:#a8bddb;font-size:1.03rem;max-width:560px;margin:0 auto}
 
-/* Tracking box */
-.track-box{
-  margin:34px auto 0;max-width:780px;
-  background:#fff;border-radius:20px;padding:10px;
-  display:flex;gap:10px;align-items:center;
-  box-shadow:var(--shadow-lg);
-}
-.track-field{display:flex;align-items:center;gap:11px;flex:1;padding:0 14px;min-width:0}
-.track-field svg{color:#9aa9bf;flex:none}
-.track-field input{
-  border:0;outline:0;background:transparent;width:100%;
-  padding:16px 0;font-size:1rem;font-weight:600;letter-spacing:.02em;color:var(--ink);
-}
-.track-field input::placeholder{color:#9aa9bf;font-weight:500}
-.btn-track{
-  border:0;cursor:pointer;flex:none;
-  display:inline-flex;align-items:center;gap:9px;
-  background:linear-gradient(135deg,var(--accent),#ff8a3d);
-  color:#fff;font-weight:800;font-size:.95rem;letter-spacing:.01em;
-  padding:16px 30px;border-radius:14px;transition:.2s;
-  box-shadow:0 10px 24px rgba(255,107,53,.34);
-}
-.btn-track:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(255,107,53,.44)}
-.btn-track:active{transform:translateY(0)}
-.btn-track[disabled]{opacity:.72;cursor:progress;transform:none}
-.spinner{
-  width:16px;height:16px;border-radius:50%;
-  border:2px solid rgba(255,255,255,.35);border-top-color:#fff;
-  animation:spin .7s linear infinite;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
+.track-box{margin:34px auto 0;max-width:780px;background:#fff;border-radius:20px;padding:10px;display:flex;gap:10px;align-items:center;box-shadow:var(--shadow-lg)}
+.track-field{display:flex;align-items:center;gap:11px;flex:1;padding:0 14px}
+.track-field input{border:0;outline:0;background:transparent;width:100%;padding:16px 0;font-size:1rem;font-weight:600}
+.btn-track{border:0;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,var(--accent),#ff8a3d);color:#fff;font-weight:800;padding:16px 30px;border-radius:14px;box-shadow:0 10px 24px rgba(255,107,53,.34)}
 .track-hint{margin-top:16px;font-size:.79rem;color:#8fa6c6}
-.track-hint b{color:#cfe0ff;font-weight:700}
-.track-hint button{
-  background:none;border:0;color:var(--accent-2);font-weight:700;cursor:pointer;
-  text-decoration:underline;text-underline-offset:3px;font-size:.79rem;
-}
-.shake{animation:shake .42s cubic-bezier(.36,.07,.19,.97)}
-@keyframes shake{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-7px)}40%,60%{transform:translateX(7px)}}
+.track-hint button{background:none;border:0;color:var(--accent-2);font-weight:700;cursor:pointer;text-decoration:underline}
 
-/* ============ SHIPMENT PANEL ============ */
-.shipment{margin-top:-62px;position:relative;z-index:5;padding-bottom:6px}
-.card{
-  background:#fff;border:1px solid var(--line);border-radius:22px;
-  box-shadow:var(--shadow);overflow:hidden;
-}
-.ship-head{
-  padding:26px 28px;border-bottom:1px solid var(--line);
-  display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;
-  background:linear-gradient(180deg,#fbfdff,#fff);
-}
-.ship-id{display:flex;align-items:center;gap:16px;min-width:0}
-.ship-id .badge-icon{
-  width:52px;height:52px;border-radius:15px;flex:none;display:grid;place-items:center;
-  background:linear-gradient(135deg,#e8f0ff,#dbe8ff);color:var(--navy-2);
-}
-.ship-id .label{font-size:.68rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
-.ship-id .num{font-size:1.16rem;font-weight:800;letter-spacing:.03em;color:var(--navy);font-variant-numeric:tabular-nums}
-.ship-actions{display:flex;gap:9px;flex-wrap:wrap}
-.btn-ghost{
-  display:inline-flex;align-items:center;gap:8px;cursor:pointer;
-  background:#fff;border:1px solid var(--line);border-radius:11px;
-  padding:10px 15px;font-size:.83rem;font-weight:700;color:#41536b;transition:.18s;
-}
-.btn-ghost:hover{border-color:#c7d5ea;background:#f7faff;color:var(--navy);transform:translateY(-1px)}
-.status-chip{
-  display:inline-flex;align-items:center;gap:8px;
-  background:#e8f4ff;color:#1d4ed8;border:1px solid #bfdbfe;
-  padding:8px 15px;border-radius:999px;font-size:.79rem;font-weight:800;
-  letter-spacing:.05em;text-transform:uppercase;
-}
-.status-chip .dot-live{width:7px;height:7px;border-radius:50%;background:var(--pickup);animation:pulse2 1.9s infinite}
-@keyframes pulse2{0%,100%{box-shadow:0 0 0 4px rgba(59,130,246,.22)}50%{box-shadow:0 0 0 9px rgba(59,130,246,0)}}
+.shipment{margin-top:-62px;position:relative;z-index:5;display:none}
+.shipment.show{display:block}
+.card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+.ship-head{padding:26px 28px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;background:linear-gradient(180deg,#fbfdff,#fff)}
+.ship-id{display:flex;align-items:center;gap:16px}
+.ship-id .badge-icon{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,#e8f0ff,#dbe8ff);color:var(--navy-2)}
+.status-chip{display:inline-flex;align-items:center;gap:8px;background:#e8f4ff;color:#1d4ed8;border:1px solid #bfdbfe;padding:8px 15px;border-radius:999px;font-size:.79rem;font-weight:800;text-transform:uppercase}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;cursor:pointer;background:#fff;border:1px solid var(--line);border-radius:11px;padding:10px 15px;font-size:.83rem;font-weight:700}
 
-/* Route strip */
-.route{
-  padding:26px 28px;border-bottom:1px solid var(--line);
-  display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;
-  background:#fbfdff;
-}
-.route-point{display:flex;gap:13px;align-items:flex-start;min-width:0}
-.route-point .ic{
-  width:40px;height:40px;border-radius:12px;flex:none;display:grid;place-items:center;
-  background:#fff;border:1px solid var(--line);color:var(--navy-2);
-}
-.route-point .code{font-size:1.02rem;font-weight:800;color:var(--navy);letter-spacing:.02em}
-.route-point .city{font-size:.82rem;color:var(--muted);font-weight:600}
-.route-point .time{font-size:.74rem;color:#93a3b8;font-weight:600;margin-top:2px}
-.route-point.to{justify-content:flex-end;text-align:right}
-.route-line{position:relative;min-width:120px;display:flex;flex-direction:column;align-items:center;gap:8px}
-.route-line .bar{width:100%;height:5px;border-radius:99px;background:#e2e9f4;overflow:hidden;position:relative}
-.route-line .bar span{
-  display:block;height:100%;width:0;border-radius:99px;
-  background:linear-gradient(90deg,var(--navy-2),var(--accent));
-  transition:width 1.2s cubic-bezier(.22,1,.36,1);
-}
-.route-line .bar::after{
-  content:"";position:absolute;top:50%;left:0;transform:translate(-50%,-50%);
-  width:11px;height:11px;border-radius:50%;background:#fff;border:3px solid var(--pickup);
-  left:var(--p,0%);transition:left 1.2s cubic-bezier(.22,1,.36,1);
-}
-.route-line .plane{
-  width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
-  background:#fff;border:1px solid var(--line);color:var(--accent);
-  box-shadow:var(--shadow-sm);
-}
-.route-line .eta{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.route{padding:26px 28px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;background:#fbfdff}
+.route-point{display:flex;gap:13px;align-items:flex-start}
+.route-point .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#fff;border:1px solid var(--line);color:var(--navy-2)}
+.route-line .bar{width:100%;height:5px;border-radius:99px;background:#e2e9f4;overflow:hidden}
+.route-line .bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--navy-2),var(--accent));transition:width 1.2s}
 
-/* Body grid */
 .ship-body{display:grid;grid-template-columns:1.35fr 1fr}
 .ship-col{padding:28px}
-.ship-col + .ship-col{border-left:1px solid var(--line)}
-.col-title{
-  display:flex;align-items:center;gap:10px;margin-bottom:20px;
-  font-size:.72rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);
-}
-.col-title svg{color:var(--accent)}
+.ship-col+.ship-col{border-left:1px solid var(--line)}
+.col-title{display:flex;align-items:center;gap:10px;margin-bottom:20px;font-size:.72rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
 
-/* Timeline */
-.timeline{list-style:none;padding-left:34px;position:relative}
+.timeline{list-style:none;padding-left:34px}
 .timeline li{position:relative;padding-bottom:24px}
-.timeline li:last-child{padding-bottom:0}
-.timeline li::before{
-  content:"";position:absolute;left:-26px;top:20px;bottom:-4px;width:2px;background:var(--line);border-radius:2px;
-}
+.timeline li::before{content:"";position:absolute;left:-26px;top:20px;bottom:-4px;width:2px;background:var(--line)}
 .timeline li:last-child::before{display:none}
-.timeline .dot{
-  position:absolute;left:-34px;top:1px;width:18px;height:18px;border-radius:50%;
-  background:#fff;border:2px solid #d5dfee;display:grid;place-items:center;
-}
-.timeline .dot svg{width:10px;height:10px;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.timeline .dot{position:absolute;left:-34px;top:1px;width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid #d5dfee;display:grid;place-items:center}
 .timeline li.done .dot{background:var(--ok);border-color:var(--ok)}
-.timeline li.done::before{background:linear-gradient(180deg,var(--ok),#bde9d5)}
-.timeline li.current .dot{background:var(--pickup);border-color:var(--pickup);box-shadow:0 0 0 5px rgba(59,130,246,.16);animation:pulse3 2s infinite}
-@keyframes pulse3{0%,100%{box-shadow:0 0 0 5px rgba(59,130,246,.16)}50%{box-shadow:0 0 0 10px rgba(59,130,246,0)}}
-.timeline h4{font-size:.94rem;font-weight:700;color:var(--navy);letter-spacing:-.01em}
-.timeline li.pending h4{color:#93a3b8;font-weight:600}
-.timeline p{font-size:.79rem;color:var(--muted);font-weight:600;margin-top:1px}
-.timeline li.current h4{color:var(--pickup)}
-.timeline li.current p{color:#2563eb}
+.timeline li.current .dot{background:var(--pickup);border-color:var(--pickup);box-shadow:0 0 0 5px rgba(59,130,246,.16)}
+.timeline h4{font-size:.94rem;font-weight:700;color:var(--navy)}
+.timeline p{font-size:.79rem;color:var(--muted)}
 
-/* Details panel */
 .detail-list{display:flex;flex-direction:column;gap:18px}
-.detail-block{
-  border:1px solid var(--line);border-radius:15px;padding:17px 18px;background:#fbfdff;
-}
-.detail-block .who{
-  display:flex;align-items:center;gap:9px;font-size:.68rem;font-weight:800;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:11px;
-}
-.detail-block .who svg{color:var(--accent)}
-.detail-block .name{font-weight:800;color:var(--navy);font-size:.98rem;letter-spacing:-.01em}
-.detail-block .line{
-  display:flex;gap:9px;font-size:.83rem;color:#4a5b72;margin-top:7px;font-weight:500;
-  align-items:flex-start;line-height:1.5;
-}
-.detail-block .line svg{flex:none;margin-top:2px;color:#93a3b8}
-.detail-block .line a{color:var(--navy-2);font-weight:700;text-decoration:none}
-.detail-block .line a:hover{color:var(--accent)}
+.detail-block{border:1px solid var(--line);border-radius:15px;padding:17px 18px;background:#fbfdff}
+.detail-block .who{display:flex;align-items:center;gap:9px;font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:11px}
+.detail-block .name{font-weight:800;color:var(--navy);font-size:.98rem}
+.detail-block .line{display:flex;gap:9px;font-size:.83rem;color:#4a5b72;margin-top:7px;align-items:flex-start}
 
 .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:15px;overflow:hidden;margin-top:18px}
 .meta-grid div{background:#fff;padding:14px 16px}
 .meta-grid .k{font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .meta-grid .v{font-size:.9rem;font-weight:700;color:var(--navy);margin-top:3px}
 
-/* Handling Icons */
-.handling-icons {
-  display: flex;
-  gap: 16px;
-  margin-top: 18px;
-  padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: 15px;
-  background: #fff;
-  justify-content: center;
-}
-.handling-icons svg {
-  width: 28px;
-  height: 28px;
-  color: var(--navy);
-  opacity: 0.7;
-}
+.handling-icons{display:flex;gap:16px;margin-top:18px;padding:14px;border:1px solid var(--line);border-radius:15px;background:#fff;justify-content:center}
+.handling-icons svg{width:28px;height:28px;color:var(--navy);opacity:.7}
 
-/* Barcode */
-.barcode-strip{
-  margin-top:20px;border:1px dashed #cfdbeb;border-radius:15px;padding:16px;
-  display:flex;flex-direction:column;align-items:center;gap:9px;background:#fff;
-}
+.barcode-strip{margin-top:20px;border:1px dashed #cfdbeb;border-radius:15px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:9px}
 #barcode{display:flex;align-items:flex-end;gap:2px;height:56px}
-#barcode i{display:block;background:var(--navy);border-radius:1px;height:100%}
-.barcode-strip .code-txt{
-  font-size:.74rem;font-weight:800;letter-spacing:.34em;color:var(--navy);
-  font-variant-numeric:tabular-nums;
-}
+#barcode i{display:block;background:var(--navy);border-radius:1px}
+.barcode-strip .code-txt{font-size:.74rem;font-weight:800;letter-spacing:.34em}
 
-/* ============ SECTIONS ============ */
 .section{padding:84px 0}
 .section-head{text-align:center;max-width:640px;margin:0 auto 48px}
-.eyebrow{
-  font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:12px;
-}
-.section-head h2{font-size:clamp(1.6rem,3.4vw,2.3rem);letter-spacing:-.03em;font-weight:800;color:var(--navy);line-height:1.2}
-.section-head p{color:var(--muted);margin-top:12px;font-size:.98rem}
-
+.eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.section-head h2{font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:800;color:var(--navy)}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.svc{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 24px;transition:.24s}
+.svc:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.svc .ic-box{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,#0f2a52,#1c4680);color:#fff;margin-bottom:18px}
+.svc h3{font-size:1.02rem;font-weight:800;color:var(--navy);margin-bottom:8px}
+.svc p{font-size:.86rem;color:var(--muted)}
 
-.svc{
-  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
-  padding:28px 24px;transition:.24s;position:relative;overflow:hidden;
-}
-.svc::before{
-  content:"";position:absolute;inset:0;border-radius:var(--radius);
-  background:linear-gradient(150deg,rgba(255,107,53,.06),transparent 60%);
-  opacity:0;transition:.24s;
-}
-.svc:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:#d6e1f0}
-.svc:hover::before{opacity:1}
-.svc .ic-box{
-  position:relative;width:52px;height:52px;border-radius:15px;display:grid;place-items:center;
-  background:linear-gradient(135deg,#0f2a52,#1c4680);color:#fff;margin-bottom:18px;
-  box-shadow:0 10px 22px rgba(15,42,82,.22);
-}
-.svc:hover .ic-box{background:linear-gradient(135deg,var(--accent),#ff9a4d);box-shadow:0 10px 22px rgba(255,107,53,.3)}
-.svc h3{position:relative;font-size:1.02rem;font-weight:800;color:var(--navy);letter-spacing:-.015em;margin-bottom:8px}
-.svc p{position:relative;font-size:.86rem;color:var(--muted);line-height:1.65}
-
-.feat{
-  background:#fff;border:1px solid var(--line);border-radius:15px;padding:22px 20px;
-  display:flex;gap:15px;align-items:flex-start;transition:.22s;
-}
-.feat:hover{border-color:#d6e1f0;box-shadow:var(--shadow-sm);transform:translateY(-3px)}
-.feat .ic{
-  width:42px;height:42px;border-radius:12px;flex:none;display:grid;place-items:center;
-  background:#eef4ff;color:var(--navy-2);
-}
-.feat h4{font-size:.92rem;font-weight:800;color:var(--navy);letter-spacing:-.01em}
-.feat p{font-size:.8rem;color:var(--muted);margin-top:4px;line-height:1.6}
-
-/* Stats band */
-.band{
-  background:linear-gradient(150deg,#08152b,#12305c 60%,#0a1a33);
-  color:#fff;padding:62px 0;position:relative;overflow:hidden;
-}
-.band::after{
-  content:"";position:absolute;inset:0;opacity:.4;
-  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
-  background-size:52px 52px;
-  mask-image:radial-gradient(circle at 50% 50%,#000,transparent 75%);
-  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000,transparent 75%);
-}
-.stats{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:26px;text-align:center}
-.stat .n{
-  font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800;letter-spacing:-.035em;
-  background:linear-gradient(100deg,#fff,#ffc59b);-webkit-background-clip:text;background-clip:text;color:transparent;
-}
+.band{background:linear-gradient(150deg,#08152b,#12305c 60%,#0a1a33);color:#fff;padding:62px 0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;text-align:center}
+.stat .n{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800;background:linear-gradient(100deg,#fff,#ffc59b);-webkit-background-clip:text;background-clip:text;color:transparent}
 .stat .l{font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8fa6c6;margin-top:6px}
 
-/* CTA */
-.cta{
-  background:#fff;border:1px solid var(--line);border-radius:24px;padding:48px 40px;
-  display:flex;flex-wrap:wrap;gap:26px;align-items:center;justify-content:space-between;
-  box-shadow:var(--shadow-sm);
-}
-.cta h3{font-size:clamp(1.3rem,2.8vw,1.75rem);font-weight:800;color:var(--navy);letter-spacing:-.03em}
-.cta p{color:var(--muted);font-size:.92rem;margin-top:8px;max-width:520px}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer;border:0;
-  background:linear-gradient(135deg,var(--navy-2),var(--navy));color:#fff;
-  font-weight:800;font-size:.92rem;padding:15px 28px;border-radius:13px;transition:.2s;
-  box-shadow:0 12px 26px rgba(10,26,51,.22);
-}
-.btn-primary:hover{background:linear-gradient(135deg,var(--accent),#ff8a3d);transform:translateY(-2px);box-shadow:0 14px 30px rgba(255,107,53,.34)}
-
-/* Footer */
 footer{background:#08152b;color:#93a8c6;padding:60px 0 0;margin-top:20px}
 .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px;padding-bottom:44px}
-.foot-brand{display:flex;align-items:center;gap:11px;color:#fff;font-weight:800;letter-spacing:-.03em;margin-bottom:14px}
-.foot-brand .logo{width:38px;height:38px}
-footer p.blurb{font-size:.84rem;line-height:1.7;max-width:300px;color:#7f97b8}
-.foot-col h5{color:#fff;font-size:.74rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px}
-.foot-col a{display:block;font-size:.85rem;color:#93a8c6;text-decoration:none;margin-bottom:11px;transition:.18s;font-weight:500}
-.foot-col a:hover{color:var(--accent-2);transform:translateX(3px)}
-.foot-bottom{
-  border-top:1px solid rgba(255,255,255,.08);padding:22px 0;
-  display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;
-  font-size:.79rem;color:#68809f;
-}
-.foot-bottom .socials{display:flex;gap:10px}
-.foot-bottom .socials a{
-  width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
-  background:rgba(255,255,255,.06);color:#93a8c6;transition:.2s;
-}
-.foot-bottom .socials a:hover{background:var(--accent);color:#fff;transform:translateY(-2px)}
-
-/* Toast */
-#toast{
-  position:fixed;left:50%;bottom:32px;transform:translate(-50%,120%);
-  background:var(--navy);color:#fff;padding:13px 22px;border-radius:13px;
-  font-size:.85rem;font-weight:700;display:flex;align-items:center;gap:10px;
-  box-shadow:0 18px 44px rgba(3,12,28,.4);z-index:200;transition:transform .38s cubic-bezier(.22,1,.36,1);
-}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.08);padding:22px 0;display:flex;justify-content:space-between;font-size:.79rem}
+#toast{position:fixed;left:50%;bottom:32px;transform:translate(-50%,120%);background:var(--navy);color:#fff;padding:13px 22px;border-radius:13px;font-size:.85rem;font-weight:700;transition:transform .38s;z-index:200}
 #toast.show{transform:translate(-50%,0)}
-#toast svg{color:#3ddc97}
 
-/* ============ RESPONSIVE ============ */
-@media(max-width:980px){
-  .ship-body{grid-template-columns:1fr}
-  .ship-col + .ship-col{border-left:0;border-top:1px solid var(--line)}
-  .grid-3{grid-template-columns:repeat(2,1fr)}
-  .grid-4{grid-template-columns:repeat(2,1fr)}
-  .foot-grid{grid-template-columns:1fr 1fr;gap:30px}
-  .stats{grid-template-columns:repeat(2,1fr);gap:32px}
-}
-@media(max-width:760px){
-  .nav-links{display:none}
-  .burger{display:grid;place-items:center;margin-left:auto}
-  .hero{padding:52px 18px 96px}
-  .track-box{flex-direction:column;padding:14px;gap:12px;border-radius:18px}
-  .track-field{width:100%;padding:0 6px;border-bottom:1px solid var(--line)}
-  .btn-track{width:100%;justify-content:center}
-  .route{grid-template-columns:1fr;gap:22px;text-align:center}
-  .route-point,.route-point.to{justify-content:center;text-align:center;flex-direction:column;align-items:center}
-  .route-line{min-width:100%}
-  .ship-head{padding:22px}
-  .ship-actions{width:100%}
-  .btn-ghost{flex:1;justify-content:center}
-  .ship-col{padding:22px}
-  .grid-3,.grid-4{grid-template-columns:1fr}
-  .section{padding:60px 0}
-  .cta{padding:34px 24px}
-  .meta-grid{grid-template-columns:1fr}
-  .foot-grid{grid-template-columns:1fr}
-  .foot-bottom{justify-content:center;text-align:center}
-}
-@media print{
-  .site-header,.hero,.section,.band,footer,#toast,.ship-actions{display:none !important}
-  .shipment{margin:0}
-  body{background:#fff}
-  .card{box-shadow:none;border:0}
-}
+@media(max-width:980px){.ship-body{grid-template-columns:1fr}.ship-col+.ship-col{border-left:0;border-top:1px solid var(--line)}.grid-3{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.foot-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.nav-links{display:none}.track-box{flex-direction:column}.btn-track{width:100%;justify-content:center}.route{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<!-- ==================== SVG ICON SPRITE ==================== -->
-<svg style="display:none" aria-hidden="true">
+<svg style="display:none">
   <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></symbol>
   <symbol id="i-plane" viewBox="0 0 24 24"><path d="M21.5 3.5L2.5 10.8l6.4 2.3 2.3 6.4L21.5 3.5z"/><path d="M8.9 13.1l4.5-4.5"/></symbol>
   <symbol id="i-truck" viewBox="0 0 24 24"><path d="M1.5 6.5h11v9h-11z"/><path d="M12.5 9.5h4l3.5 3.5v2.5h-7.5z"/><circle cx="5.5" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
   <symbol id="i-ship" viewBox="0 0 24 24"><path d="M3 14l1.6 5.5h14.8L21 14"/><path d="M5 14V8h14v6"/><path d="M12 4v4"/></symbol>
-  <symbol id="i-warehouse" viewBox="0 0 24 24"><path d="M3 21V9l9-5 9 5v12"/><path d="M7.5 21v-7h9v7"/></symbol>
-  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8.2-8 9-4.5-.8-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></symbol>
-  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.3 7-12a7 7 0 10-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></symbol>
-  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3h2.8l1.9 4.7-2.4 1.5a12.5 12.5 0 006 6l1.5-2.4L21 14.7v2.8a2.5 2.5 0 01-2.7 2.5A16.5 16.5 0 013.5 5.7 2.5 2.5 0 016.5 3z"/></symbol>
   <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c0-4 3.4-6 7.5-6s7.5 2 7.5 6"/></symbol>
-  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5L16.6 16.6"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L20 6.8"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3h2.8l1.9 4.7-2.4 1.5a12.5 12.5 0 006 6l1.5-2.4L21 14.7v2.8a2.5 2.5 0 01-2.7 2.5A16.5 16.5 0 013.5 5.7 2.5 2.5 0 016.5 3z"/></symbol>
   <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.6 3.9 5.7 3.9 9S14.6 18.4 12 21c-2.6-2.6-3.9-5.7-3.9-9S9.4 5.6 12 3z"/></symbol>
-  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 13.5v-1.5a8 8 0 0116 0v1.5"/><path d="M4 13.5h3v5.5H5.2A1.2 1.2 0 014 17.8v-4.3z"/><path d="M20 13.5h-3v5.5h1.8A1.2 1.2 0 0020 17.8v-4.3z"/></symbol>
-  <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 9.5V3.5h10v6"/><rect x="3.5" y="9.5" width="17" height="8" rx="2"/><path d="M7 14.5h10v6H7z"/></symbol>
-  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11.5" height="11.5" rx="2.2"/><path d="M5 15.5V5.5a2 2 0 012-2h8.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></symbol>
   <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3.5H7a2 2 0 00-2 2v13a2 2 0 002 2h10a2 2 0 002-2V8.5l-5-5z"/><path d="M14 3.5v5h5"/></symbol>
-  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2.5L4.5 13.5H11l-1 8 8.5-11H12l1-8z"/></symbol>
-  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></symbol>
-  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 018 0v3"/></symbol>
-  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 01-13.7 5.6"/><path d="M4 12a8 8 0 0113.7-5.6"/><path d="M18 3v4h-4"/><path d="M6 21v-4h4"/></symbol>
-  <!-- Handling icons -->
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11.5" height="11.5" rx="2.2"/><path d="M5 15.5V5.5a2 2 0 012-2h8.5"/></symbol>
+  <symbol id="i-print" viewBox="0 0 24 24"><path d="M7 9.5V3.5h10v6"/><rect x="3.5" y="9.5" width="17" height="8" rx="2"/><path d="M7 14.5h10v6H7z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5L16.6 16.6"/></symbol>
   <symbol id="i-fragile" viewBox="0 0 24 24"><path d="M12 3l-2 7h4l-2 7"/><path d="M5 10h14"/><path d="M5 14h14"/><path d="M5 18h14"/><path d="M5 22h14"/></symbol>
   <symbol id="i-upward" viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M8 7l4-4 4 4"/><path d="M8 13l4-4 4 4"/></symbol>
   <symbol id="i-dry" viewBox="0 0 24 24"><path d="M12 3a9 9 0 00-9 9v5a2 2 0 002 2h14a2 2 0 002-2v-5a9 9 0 00-9-9z"/><path d="M12 7v6"/><path d="M12 7a3 3 0 00-3 3"/></symbol>
+  <symbol id="i-package" viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></symbol>
+  <symbol id="i-weight" viewBox="0 0 24 24"><path d="M12 3v2"/><path d="M8 8h8l1 12H7L8 8z"/><path d="M9 12h6"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8.2-8 9-4.5-.8-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></symbol>
 </svg>
 
-<!-- ==================== HEADER ==================== -->
 <header class="site-header">
   <nav class="nav">
     <a href="#" class="brand">
-      <svg class="logo" viewBox="0 0 48 48" aria-hidden="true">
-        <defs>
-          <linearGradient id="cjGrad1" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#f97316"/>
-            <stop offset="100%" stop-color="#ef4444"/>
-          </linearGradient>
-          <linearGradient id="cjGrad2" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#3b82f6"/>
-            <stop offset="100%" stop-color="#1d4ed8"/>
-          </linearGradient>
-          <linearGradient id="cjGrad3" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#facc15"/>
-            <stop offset="100%" stop-color="#eab308"/>
-          </linearGradient>
-        </defs>
-        <rect x="1.5" y="1.5" width="45" height="45" rx="13" fill="#fff" stroke="#e5eaf2"/>
-        <!-- CJ Cargo stylized logo -->
-        <circle cx="16" cy="20" r="5" fill="url(#cjGrad2)"/>
-        <circle cx="24" cy="28" r="5" fill="url(#cjGrad3)"/>
-        <circle cx="32" cy="20" r="5" fill="url(#cjGrad1)"/>
-        <path d="M12 34h24" stroke="#0a1a33" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>
-      <span>CJ CARGO<small>International Express</small></span>
+      <svg class="logo" viewBox="0 0 48 48"><rect x="1.5" y="1.5" width="45" height="45" rx="13" fill="#fff" stroke="#e5eaf2"/><circle cx="16" cy="20" r="5" fill="#3b82f6"/><circle cx="24" cy="28" r="5" fill="#eab308"/><circle cx="32" cy="20" r="5" fill="#ef4444"/><path d="M12 34h24" stroke="#0a1a33" stroke-width="2.5" stroke-linecap="round"/></svg>
+      CJ CARGO
     </a>
     <div class="nav-links">
       <a href="#track">Track</a>
       <a href="#services">Services</a>
-      <a href="#features">Why Us</a>
       <a href="#support">Support</a>
       <a href="#track" class="nav-cta">Get a Quote</a>
     </div>
-    <button class="burger" aria-label="Menu">
-      <svg class="icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-    </button>
   </nav>
 </header>
 
-<!-- ==================== HERO ==================== -->
 <section class="hero" id="track">
   <div class="hero-inner">
-    <span class="pill"><span class="dot-live"></span> Live network status · 214 countries</span>
+    <span class="pill"><span class="dot-live"></span> Live network · 214 countries</span>
     <h1>Track your cargo <em>anywhere</em>,<br>in real time.</h1>
-    <p class="sub">Air, sea, road and last-mile delivery — one tracking number covers the whole journey, from pickup to signature.</p>
-
-    <form class="track-box" id="trackForm" autocomplete="off">
+    <p class="sub">One tracking number for the full journey — air, sea, road, and last-mile.</p>
+    <form class="track-box" id="trackForm">
       <div class="track-field">
-        <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
-        <input type="text" id="trackInput" placeholder="Enter your tracking number" value="CJGKRS124876KR" aria-label="Tracking number">
+        <svg class="icon"><use href="#i-search"/></svg>
+        <input type="text" id="trackInput" placeholder="Enter your tracking number">
       </div>
       <button type="submit" class="btn-track" id="trackBtn">
-        <svg class="icon icon-sm" aria-hidden="true"><use href="#i-search"/></svg>
+        <svg class="icon icon-sm"><use href="#i-search"/></svg>
         <span>Track Shipment</span>
       </button>
     </form>
-
-    <p class="track-hint">Try the demo waybill <b>CJGKRS124876KR</b> — or <button type="button" id="demoBtn">load sample shipment</button></p>
+    <p class="track-hint">Try demo: <button type="button" id="demoBtn">CJGKRS124876KR</button></p>
   </div>
 </section>
 
-<!-- ==================== SHIPMENT PANEL ==================== -->
 <main class="wrap shipment" id="shipmentPanel">
   <div class="card">
-
-    <!-- Head -->
     <div class="ship-head">
       <div class="ship-id">
-        <div class="badge-icon">
-          <svg class="icon icon-lg" aria-hidden="true"><use href="#i-box"/></svg>
-        </div>
+        <div class="badge-icon"><svg class="icon icon-lg"><use href="#i-package"/></svg></div>
         <div>
-          <div class="label">Waybill / Tracking No.</div>
-          <div class="num" id="wbNumber">CJGKRS124876KR</div>
+          <div style="font-size:.68rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)">Waybill</div>
+          <div class="num" id="wbNumber" style="font-size:1.16rem;font-weight:800">CJGKRS124876KR</div>
         </div>
       </div>
-
-      <div class="ship-actions">
-        <span class="status-chip"><span class="dot-live"></span> Arrived Awaiting Pickup</span>
-        <button class="btn-ghost" id="copyBtn" type="button">
-          <svg class="icon icon-sm" aria-hidden="true"><use href="#i-copy"/></svg> Copy
-        </button>
-        <button class="btn-ghost" id="printBtn" type="button">
-          <svg class="icon icon-sm" aria-hidden="true"><use href="#i-print"/></svg> Print
-        </button>
+      <div style="display:flex;gap:9px;align-items:center">
+        <span class="status-chip"><span class="dot-live" style="background:var(--pickup)"></span> Arrived Awaiting Pickup</span>
+        <button class="btn-ghost" id="copyBtn"><svg class="icon icon-sm"><use href="#i-copy"/></svg> Copy</button>
+        <button class="btn-ghost" id="printBtn"><svg class="icon icon-sm"><use href="#i-print"/></svg> Print</button>
       </div>
     </div>
 
-    <!-- Route -->
     <div class="route">
-      <div class="route-point from">
-        <div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg></div>
+      <div class="route-point">
+        <div class="ic"><svg class="icon"><use href="#i-plane"/></svg></div>
         <div>
-          <div class="code">ICN · Seoul</div>
-          <div class="city">South Korea — Origin</div>
-          <div class="time">Departed 15 Oct 2026, 03:10</div>
+          <div style="font-weight:800">ICN · Seoul</div>
+          <div style="font-size:.82rem;color:var(--muted)">South Korea — Origin</div>
+          <div style="font-size:.74rem;color:#93a3b8">Departed 15 Oct 2026, 03:10</div>
         </div>
       </div>
-
-      <div class="route-line">
-        <div class="plane"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-plane"/></svg></div>
-        <div class="bar" id="progressBar" style="--p:0%"><span></span></div>
-        <div class="eta" id="etaText">Arrived 16 Oct 2026</div>
+      <div class="route-line" style="text-align:center">
+        <div style="width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid var(--line);margin:0 auto 8px;color:var(--accent)"><svg class="icon icon-sm"><use href="#i-plane"/></svg></div>
+        <div class="bar" id="progressBar"><span style="width:100%"></span></div>
+        <div id="etaText" style="font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:8px">Arrived 16 Oct 2026</div>
       </div>
-
-      <div class="route-point to">
-        <div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></div>
+      <div class="route-point" style="justify-content:flex-end;text-align:right">
+        <div class="ic"><svg class="icon"><use href="#i-pin"/></svg></div>
         <div>
-          <div class="code">SGN · Ho Chi Minh City</div>
-          <div class="city">Vietnam — Destination</div>
-          <div class="time">Arrived 16 Oct 2026, 08:05</div>
+          <div style="font-weight:800">SGN · Ho Chi Minh City</div>
+          <div style="font-size:.82rem;color:var(--muted)">Vietnam — Destination</div>
+          <div style="font-size:.74rem;color:#93a3b8">Arrived 16 Oct 2026, 08:05</div>
         </div>
       </div>
     </div>
 
-    <!-- Body -->
     <div class="ship-body">
-
-      <!-- Timeline -->
       <div class="ship-col">
-        <div class="col-title">
-          <svg class="icon icon-sm" aria-hidden="true"><use href="#i-clock"/></svg> Shipment Journey
-        </div>
-
+        <div class="col-title"><svg class="icon icon-sm"><use href="#i-clock"/></svg> Shipment Journey</div>
         <ol class="timeline">
-          <li class="done">
-            <span class="dot"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
-            <h4>Shipment information received</h4>
-            <p>Seoul, South Korea · 15 Oct 2026, 09:14</p>
-          </li>
-          <li class="done">
-            <span class="dot"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
-            <h4>Picked up by courier</h4>
-            <p>Incheon Sorting Facility, South Korea · 15 Oct 2026, 17:40</p>
-          </li>
-          <li class="done">
-            <span class="dot"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
-            <h4>Departed origin airport</h4>
-            <p>Incheon Int'l Airport (ICN) · 15 Oct 2026, 22:10</p>
-          </li>
-          <li class="done">
-            <span class="dot"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
-            <h4>Arrived at destination hub</h4>
-            <p>Tan Son Nhat Int'l Airport (SGN), Ho Chi Minh City · 16 Oct 2026, 08:05</p>
-          </li>
-          <li class="current">
-            <span class="dot"></span>
-            <h4>Arrived at pickup facility</h4>
-            <p>Awaiting recipient pickup · Ho Chi Minh City · 16 Oct 2026, 11:30</p>
-          </li>
-          <li class="pending">
-            <span class="dot"></span>
-            <h4>Delivered &amp; signed</h4>
-            <p>Pending recipient signature</p>
-          </li>
+          <li class="done"><span class="dot"></span><h4>Shipment information received</h4><p>Seoul · 15 Oct 2026, 09:14</p></li>
+          <li class="done"><span class="dot"></span><h4>Picked up by courier</h4><p>Incheon Sorting Facility · 15 Oct 2026, 17:40</p></li>
+          <li class="done"><span class="dot"></span><h4>Departed origin airport</h4><p>Incheon Int'l (ICN) · 15 Oct 2026, 22:10</p></li>
+          <li class="done"><span class="dot"></span><h4>Arrived at destination hub</h4><p>Tan Son Nhat (SGN) · 16 Oct 2026, 08:05</p></li>
+          <li class="current"><span class="dot"></span><h4>Arrived at pickup facility</h4><p>Awaiting recipient · Ho Chi Minh City · 16 Oct 2026, 11:30</p></li>
+          <li class="pending"><span class="dot"></span><h4>Delivered & signed</h4><p>Pending recipient signature</p></li>
         </ol>
       </div>
 
-      <!-- Details -->
       <div class="ship-col">
-        <div class="col-title">
-          <svg class="icon icon-sm" aria-hidden="true"><use href="#i-doc"/></svg> Shipment Details
-        </div>
-
+        <div class="col-title"><svg class="icon icon-sm"><use href="#i-package"/></svg> Shipment Details</div>
         <div class="detail-list">
-
-          <!-- Sender -->
           <div class="detail-block">
-            <div class="who"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-user"/></svg> Sender</div>
+            <div class="who"><svg class="icon icon-sm"><use href="#i-user"/></svg> Sender</div>
             <div class="name">Liyong hoon</div>
-            <div class="line">
-              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-phone"/></svg>
-              <a href="tel:+821012345678">+82 10-1234-5678</a>
-            </div>
-            <div class="line">
-              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-pin"/></svg>
-              <span>123, Digital-ro 26-gil, Guro-gu, Seoul, 08389, South Korea</span>
-            </div>
-            <div class="line">
-              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-globe"/></svg>
-              <span>Country: South Korea</span>
-            </div>
+            <div class="line"><svg class="icon icon-sm"><use href="#i-phone"/></svg><a href="tel:+821012345678">+82 10-1234-5678</a></div>
+            <div class="line"><svg class="icon icon-sm"><use href="#i-pin"/></svg><span>123, Digital-ro 26-gil, Guro-gu, Seoul, 08389, South Korea</span></div>
+            <div class="line"><svg class="icon icon-sm"><use href="#i-globe"/></svg><span>South Korea</span></div>
           </div>
-
-          <!-- Receiver -->
           <div class="detail-block">
-            <div class="who"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-user"/></svg> Receiver</div>
+            <div class="who"><svg class="icon icon-sm"><use href="#i-user"/></svg> Receiver</div>
             <div class="name">Tên Hồ Thị Thùy Dương</div>
-            <div class="line">
-              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-phone"/></svg>
-              <a href="tel:+840332728199">+84 033 272 8199</a>
-            </div>
-            <div class="line">
-              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-pin"/></svg>
-              <span>
-                CTY cổ phần điện tử Amtec,<br>
-                Số 1A, Lô A, Đường số 1,<br>
-                Khu công nghiệp Hiệp Phước,<br>
-                Xã Hiệp Phước, Thành phố Hồ Chí Minh, Việt Nam
-              </span>
-            </div>
-            <div class="line">
-              <svg class="icon icon-sm" aria-hidden="true"><use href="#i-globe"/></svg>
-              <span>Country: Vietnam</span>
-            </div>
+            <div class="line"><svg class="icon icon-sm"><use href="#i-phone"/></svg><a href="tel:+840332728199">+84 033 272 8199</a></div>
+            <div class="line"><svg class="icon icon-sm"><use href="#i-pin"/></svg><span>CTY cổ phần điện tử Amtec, Số 1A, Lô A, Đường số 1, Khu công nghiệp Hiệp Phước, Xã Hiệp Phước, Thành phố Hồ Chí Minh, Việt Nam</span></div>
+            <div class="line"><svg class="icon icon-sm"><use href="#i-globe"/></svg><span>Vietnam</span></div>
           </div>
-
-          <!-- Meta -->
           <div class="meta-grid">
-            <div><div class="k">Service</div><div class="v">International Express</div></div>
-            <div><div class="k">Weight</div><div class="v">2 kg</div></div>
-            <div><div class="k">Pieces</div><div class="v">1 of 1</div></div>
-            <div><div class="k">Billing</div><div class="v">Prepaid</div></div>
-            <div><div class="k">Sent Date</div><div class="v">15/10/2026</div></div>
-            <div><div class="k">Delivery Date</div><div class="v">16/10/2026</div></div>
+            <div><div class="k"><svg class="icon icon-sm" style="display:inline;vertical-align:middle;margin-right:4px"><use href="#i-truck"/></svg>Service</div><div class="v">International Express</div></div>
+            <div><div class="k"><svg class="icon icon-sm" style="display:inline;vertical-align:middle;margin-right:4px"><use href="#i-weight"/></svg>Weight</div><div class="v">2 kg</div></div>
+            <div><div class="k"><svg class="icon icon-sm" style="display:inline;vertical-align:middle;margin-right:4px"><use href="#i-package"/></svg>Pieces</div><div class="v">1 of 1</div></div>
+            <div><div class="k"><svg class="icon icon-sm" style="display:inline;vertical-align:middle;margin-right:4px"><use href="#i-shield"/></svg>Billing</div><div class="v">Prepaid</div></div>
+            <div><div class="k"><svg class="icon icon-sm" style="display:inline;vertical-align:middle;margin-right:4px"><use href="#i-calendar"/></svg>Sent</div><div class="v">15/10/2026</div></div>
+            <div><div class="k"><svg class="icon icon-sm" style="display:inline;vertical-align:middle;margin-right:4px"><use href="#i-calendar"/></svg>Delivery</div><div class="v">16/10/2026</div></div>
           </div>
-
-          <!-- Handling Icons -->
           <div class="handling-icons">
             <svg title="Fragile"><use href="#i-fragile"/></svg>
             <svg title="This way up"><use href="#i-upward"/></svg>
             <svg title="Keep dry"><use href="#i-dry"/></svg>
           </div>
-
-          <!-- Barcode -->
           <div class="barcode-strip">
-            <div id="barcode" aria-hidden="true"></div>
+            <div id="barcode"></div>
             <div class="code-txt" id="barcodeText">CJGKRS124876KR</div>
           </div>
-
         </div>
       </div>
     </div>
   </div>
 </main>
 
-<!-- ==================== SERVICES ==================== -->
 <section class="section" id="services">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Our Services</div>
-      <h2>Every mode of transport, one logistics partner</h2>
-      <p>From a single document to a full container load — we move it, clear it, and deliver it.</p>
+      <h2>Every mode of transport, one partner</h2>
     </div>
-
     <div class="grid-3">
-      <article class="svc">
-        <div class="ic-box"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-plane"/></svg></div>
-        <h3>Air Freight</h3>
-        <p>Priority and economy air cargo with consolidated daily departures from major Asian hubs.</p>
-      </article>
-
-      <article class="svc">
-        <div class="ic-box"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-ship"/></svg></div>
-        <h3>Sea Freight</h3>
-        <p>FCL and LCL ocean shipping with competitive transit times and full port-to-port coverage.</p>
-      </article>
-
-      <article class="svc">
-        <div class="ic-box"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-truck"/></svg></div>
-        <h3>Road Transport</h3>
-        <p>Cross-border trucking and domestic haulage with GPS-monitored fleets and timed windows.</p>
-      </article>
-
-      <article class="svc">
-        <div class="ic-box"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-warehouse"/></svg></div>
-        <h3>Warehousing</h3>
-        <p>Bonded and non-bonded storage, pick-and-pack, labelling and inventory management.</p>
-      </article>
-
-      <article class="svc">
-        <div class="ic-box"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-doc"/></svg></div>
-        <h3>Customs Brokerage</h3>
-        <p>Licensed clearance agents handling tariffs, duties, permits and inspection paperwork.</p>
-      </article>
-
-      <article class="svc">
-        <div class="ic-box"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-pin"/></svg></div>
-        <h3>Last-Mile Delivery</h3>
-        <p>Door-to-door handover with proof of delivery, photo capture and e-signature.</p>
-      </article>
+      <article class="svc"><div class="ic-box"><svg class="icon icon-lg"><use href="#i-plane"/></svg></div><h3>Air Freight</h3><p>Priority and economy air cargo with daily departures from major hubs.</p></article>
+      <article class="svc"><div class="ic-box"><svg class="icon icon-lg"><use href="#i-ship"/></svg></div><h3>Sea Freight</h3><p>FCL and LCL ocean shipping with competitive transit times.</p></article>
+      <article class="svc"><div class="ic-box"><svg class="icon icon-lg"><use href="#i-truck"/></svg></div><h3>Road Transport</h3><p>Cross-border trucking and domestic haulage with GPS tracking.</p></article>
+      <article class="svc"><div class="ic-box"><svg class="icon icon-lg"><use href="#i-box"/></svg></div><h3>Warehousing</h3><p>Bonded storage, pick-and-pack, and inventory management.</p></article>
+      <article class="svc"><div class="ic-box"><svg class="icon icon-lg"><use href="#i-doc"/></svg></div><h3>Customs Brokerage</h3><p>Licensed clearance for tariffs, duties, and permits.</p></article>
+      <article class="svc"><div class="ic-box"><svg class="icon icon-lg"><use href="#i-pin"/></svg></div><h3>Last-Mile Delivery</h3><p>Door-to-door with proof of delivery and e-signature.</p></article>
     </div>
   </div>
 </section>
 
-<!-- ==================== FEATURES ==================== -->
-<section class="section" id="features" style="padding-top:0">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Why CJ Cargo</div>
-      <h2>Built for parcels that actually matter</h2>
-      <p>Transparency at every checkpoint, and a human on the line when you need one.</p>
-    </div>
-
-    <div class="grid-4">
-      <div class="feat">
-        <div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg></div>
-        <div><h4>Real-Time Tracking</h4><p>Live checkpoints refreshed every few minutes across the whole route.</p></div>
-      </div>
-      <div class="feat">
-        <div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></div>
-        <div><h4>Insured &amp; Sealed</h4><p>Tamper-evident packing and optional all-risk cargo insurance.</p></div>
-      </div>
-      <div class="feat">
-        <div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-headset"/></svg></div>
-        <div><h4>24/7 Support</h4><p>Multilingual agents in Korean, Vietnamese and English.</p></div>
-      </div>
-      <div class="feat">
-        <div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></div>
-        <div><h4>Chain of Custody</h4><p>Every scan logged with time, location and handler ID.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== STATS ==================== -->
 <section class="band">
   <div class="wrap">
     <div class="stats">
-      <div class="stat"><div class="n" data-count="214">0</div><div class="l">Countries Served</div></div>
-      <div class="stat"><div class="n" data-count="4.8" data-suffix="M">0</div><div class="l">Parcels Delivered</div></div>
-      <div class="stat"><div class="n" data-count="99.2" data-suffix="%">0</div><div class="l">On-Time Rate</div></div>
-      <div class="stat"><div class="n" data-count="36">0</div><div class="l">Sorting Hubs</div></div>
+      <div class="stat"><div class="n">214</div><div class="l">Countries Served</div></div>
+      <div class="stat"><div class="n">4.8M</div><div class="l">Parcels Delivered</div></div>
+      <div class="stat"><div class="n">99.2%</div><div class="l">On-Time Rate</div></div>
+      <div class="stat"><div class="n">36</div><div class="l">Sorting Hubs</div></div>
     </div>
   </div>
 </section>
 
-<!-- ==================== CTA / SUPPORT ==================== -->
-<section class="section" id="support">
-  <div class="wrap">
-    <div class="cta">
-      <div>
-        <h3>Need help with this shipment?</h3>
-        <p>Our support desk can confirm customs status, delivery windows and recipient instructions — reach us any time, any day.</p>
-      </div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <a href="tel:+840332728199" class="btn-ghost" style="padding:15px 22px;border-radius:13px">
-          <svg class="icon icon-sm" aria-hidden="true"><use href="#i-phone"/></svg> Call Support
-        </a>
-        <a href="#track" class="btn-primary">
-          <svg class="icon icon-sm" aria-hidden="true"><use href="#i-refresh"/></svg> Track Another Parcel
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== FOOTER ==================== -->
 <footer>
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="foot-brand">
-          <svg class="logo" viewBox="0 0 48 48" aria-hidden="true">
-            <rect x="1.5" y="1.5" width="45" height="45" rx="13" fill="#fff"/>
-            <circle cx="16" cy="20" r="5" fill="#3b82f6"/>
-            <circle cx="24" cy="28" r="5" fill="#eab308"/>
-            <circle cx="32" cy="20" r="5" fill="#ef4444"/>
-            <path d="M12 34h24" stroke="#0a1a33" stroke-width="2.5" stroke-linecap="round"/>
-          </svg>
-          CJ CARGO
-        </div>
-        <p class="blurb">Global cargo and parcel logistics connecting Korea, Vietnam and 200+ destinations worldwide.</p>
+        <div style="font-weight:800;color:#fff;margin-bottom:14px">CJ CARGO</div>
+        <p style="font-size:.84rem;max-width:300px;color:#7f97b8">Global cargo connecting Korea, Vietnam and 200+ destinations.</p>
       </div>
-
-      <div class="foot-col">
-        <h5>Company</h5>
-        <a href="#">About Us</a>
-        <a href="#">Network</a>
-        <a href="#">Careers</a>
-        <a href="#">Newsroom</a>
-      </div>
-
-      <div class="foot-col">
-        <h5>Services</h5>
-        <a href="#services">Air Freight</a>
-        <a href="#services">Sea Freight</a>
-        <a href="#services">Customs</a>
-        <a href="#services">Warehousing</a>
-      </div>
-
-      <div class="foot-col">
-        <h5>Support</h5>
-        <a href="#track">Track a Parcel</a>
-        <a href="#support">Contact Us</a>
-        <a href="#">Shipping Guide</a>
-        <a href="#">Claims</a>
-      </div>
+      <div><h5 style="color:#fff;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px">Services</h5><a href="#services" style="color:#93a8c6;text-decoration:none;display:block;margin-bottom:11px">Air Freight</a><a href="#services" style="color:#93a8c6;text-decoration:none;display:block">Sea Freight</a></div>
+      <div><h5 style="color:#fff;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px">Company</h5><a href="#" style="color:#93a8c6;text-decoration:none;display:block;margin-bottom:11px">About</a><a href="#" style="color:#93a8c6;text-decoration:none;display:block">Contact</a></div>
+      <div><h5 style="color:#fff;font-size:.74rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px">Support</h5><a href="#track" style="color:#93a8c6;text-decoration:none;display:block;margin-bottom:11px">Track</a><a href="#" style="color:#93a8c6;text-decoration:none;display:block">Claims</a></div>
     </div>
-
-    <div class="foot-bottom">
-      <span>© 2026 CJ Cargo. All rights reserved.</span>
-      <div class="socials">
-        <a href="#" aria-label="Globe"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-globe"/></svg></a>
-        <a href="#" aria-label="Support"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-headset"/></svg></a>
-        <a href="#" aria-label="Secure"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-lock"/></svg></a>
-      </div>
-    </div>
+    <div class="foot-bottom"><span>© 2026 CJ Cargo. All rights reserved.</span></div>
   </div>
 </footer>
 
-<!-- Toast -->
-<div id="toast">
-  <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5L20 6.8"/></svg>
-  <span id="toastMsg">Copied</span>
-</div>
+<div id="toast"><span id="toastMsg">Copied</span></div>
 
 <script>
-(function () {
-  "use strict";
+(function(){
+  const form=document.getElementById('trackForm');
+  const input=document.getElementById('trackInput');
+  const btn=document.getElementById('trackBtn');
+  const panel=document.getElementById('shipmentPanel');
+  const wbNumber=document.getElementById('wbNumber');
+  const barcodeEl=document.getElementById('barcode');
+  const barcodeTx=document.getElementById('barcodeText');
+  const bar=document.getElementById('progressBar');
+  const copyBtn=document.getElementById('copyBtn');
+  const printBtn=document.getElementById('printBtn');
+  const demoBtn=document.getElementById('demoBtn');
+  const toast=document.getElementById('toast');
+  const toastMsg=document.getElementById('toastMsg');
+  const VALID='CJGKRS124876KR';
 
-  /* ---------- Element refs ---------- */
-  const form      = document.getElementById('trackForm');
-  const input     = document.getElementById('trackInput');
-  const btn       = document.getElementById('trackBtn');
-  const panel     = document.getElementById('shipmentPanel');
-  const wbNumber  = document.getElementById('wbNumber');
-  const barcodeEl = document.getElementById('barcode');
-  const barcodeTx = document.getElementById('barcodeText');
-  const bar       = document.getElementById('progressBar');
-  const copyBtn   = document.getElementById('copyBtn');
-  const printBtn  = document.getElementById('printBtn');
-  const demoBtn   = document.getElementById('demoBtn');
-  const toast     = document.getElementById('toast');
-  const toastMsg  = document.getElementById('toastMsg');
-
-  const DEFAULT_WB = 'CJGKRS124876KR';
-
-  /* ---------- Toast ---------- */
   let toastTimer;
-  function showToast(msg) {
-    toastMsg.textContent = msg;
+  function showToast(msg){
+    toastMsg.textContent=msg;
     toast.classList.add('show');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    toastTimer=setTimeout(()=>toast.classList.remove('show'),2200);
   }
 
-  /* ---------- Barcode generator ---------- */
-  const BAR_PATTERN = [
-    2,1,1,3,1,2,1,1,2,3,1,1,2,1,3,2,1,1,2,2,1,3,1,1,2,1,1,3,
-    2,1,2,1,1,2,3,1,1,2,1,2,1,3,1,2,1,1,2,1,3,1,1,2,2,1,2,1
-  ];
-  function renderBarcode(seed) {
-    let hash = 0;
-    for (let i = 0; i < seed.length; i++) hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
-
-    barcodeEl.innerHTML = '';
-    for (let i = 0; i < BAR_PATTERN.length; i++) {
-      const w = BAR_PATTERN[(i + hash) % BAR_PATTERN.length];
-      const b = document.createElement('i');
-      b.style.width = w + 'px';
-      b.style.height = (60 + ((hash >> i % 12) % 40)) + '%';
+  function renderBarcode(seed){
+    let hash=0;
+    for(let i=0;i<seed.length;i++) hash=(hash*31+seed.charCodeAt(i))>>>0;
+    barcodeEl.innerHTML='';
+    for(let i=0;i<48;i++){
+      const w=2+(hash*(i+1)%3);
+      const h=30+(hash*(i+3)%28);
+      const b=document.createElement('i');
+      b.style.width=w+'px';
+      b.style.height=h+'px';
       barcodeEl.appendChild(b);
     }
-    barcodeTx.textContent = seed;
+    barcodeTx.textContent=seed;
   }
 
-  /* ---------- Progress animation ---------- */
-  function animateProgress(pct, label) {
-    bar.style.setProperty('--p', '0%');
-    bar.querySelector('span').style.width = '0%';
-    document.getElementById('etaText').textContent = label;
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        bar.style.setProperty('--p', pct + '%');
-        bar.querySelector('span').style.width = pct + '%';
-      });
-    });
-  }
-
-  /* ---------- Tracking submit ---------- */
-  form.addEventListener('submit', function (e) {
+  form.addEventListener('submit',e=>{
     e.preventDefault();
-    const value = input.value.trim();
-
-    if (!value) {
-      form.classList.remove('shake');
-      void form.offsetWidth;
-      form.classList.add('shake');
+    const value=input.value.trim().toUpperCase();
+    if(!value){
       showToast('Please enter a tracking number');
-      input.focus();
+      panel.classList.remove('show');
       return;
     }
-
-    const original = btn.innerHTML;
-    btn.disabled = true;
-    btn.innerHTML = '<span class="spinner"></span><span>Locating…</span>';
-
-    setTimeout(() => {
-      btn.disabled = false;
-      btn.innerHTML = original;
-
-      const wb = value.toUpperCase();
-      wbNumber.textContent = wb;
-      renderBarcode(wb);
-      animateProgress(100, 'Arrived 16 Oct 2026');
-
-      panel.style.opacity = '0';
-      panel.style.transform = 'translateY(14px)';
-      panel.style.transition = 'opacity .45s ease, transform .45s ease';
-
-      requestAnimationFrame(() => {
-        panel.style.opacity = '1';
-        panel.style.transform = 'translateY(0)';
-        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-
-      showToast('Tracking updated · ' + wb);
-    }, 850);
+    if(value!==VALID){
+      showToast('Tracking code not found');
+      panel.classList.remove('show');
+      return;
+    }
+    const orig=btn.innerHTML;
+    btn.disabled=true;
+    btn.innerHTML='<span>Locating…</span>';
+    setTimeout(()=>{
+      btn.disabled=false;
+      btn.innerHTML=orig;
+      wbNumber.textContent=value;
+      renderBarcode(value);
+      panel.classList.add('show');
+      panel.scrollIntoView({behavior:'smooth'});
+      showToast('Tracking updated · '+value);
+    },700);
   });
 
-  /* ---------- Demo button ---------- */
-  demoBtn.addEventListener('click', function () {
-    input.value = DEFAULT_WB;
-    form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+  demoBtn.addEventListener('click',()=>{
+    input.value=VALID;
+    form.dispatchEvent(new Event('submit',{cancelable:true,bubbles:true}));
   });
 
-  /* ---------- Copy ---------- */
-  copyBtn.addEventListener('click', async function () {
-    const text = wbNumber.textContent.trim();
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(text);
-      } else {
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.position = 'fixed';
-        ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-      }
+  copyBtn.addEventListener('click',async()=>{
+    try{
+      await navigator.clipboard.writeText(wbNumber.textContent.trim());
       showToast('Tracking number copied');
-    } catch (err) {
-      showToast('Copy failed — please select manually');
+    }catch(e){
+      showToast('Copy failed');
     }
   });
 
-  /* ---------- Print ---------- */
-  printBtn.addEventListener('click', () => window.print());
-
-  /* ---------- Animated counters ---------- */
-  const counters = document.querySelectorAll('.stat .n');
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function runCounter(el) {
-    const target = parseFloat(el.dataset.count);
-    const suffix = el.dataset.suffix || '';
-    const decimals = (String(target).split('.')[1] || '').length;
-    const duration = 1400;
-    const start = performance.now();
-
-    if (prefersReduced) {
-      el.textContent = target.toFixed(decimals) + suffix;
-      return;
-    }
-
-    function tick(now) {
-      const p = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = (target * eased).toFixed(decimals) + suffix;
-      if (p < 1) requestAnimationFrame(tick);
-      else el.textContent = target.toFixed(decimals) + suffix;
-    }
-    requestAnimationFrame(tick);
-  }
-
-  const io = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        runCounter(entry.target);
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(c => io.observe(c));
-
-  /* ---------- Init ---------- */
-  renderBarcode(DEFAULT_WB);
-  window.addEventListener('load', () => animateProgress(100, 'Arrived 16 Oct 2026'));
-
+  printBtn.addEventListener('click',()=>window.print());
 })();
 </script>
 </body>
