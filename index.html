@@ -4,23 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CJ Cargo — International Express Tracking</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a1a33'/><text x='50' y='62' font-size='48' font-weight='800' fill='white' text-anchor='middle' font-family='Arial'>CJ</text></svg>">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --navy:#0a1a33;--navy-2:#12305c;--accent:#ff6b35;--accent-2:#ffa94d;
-  --ink:#0f172a;--muted:#64748b;--line:#e5eaf2;--bg:#f5f8fc;
-  --ok:#10b981;--pickup:#3b82f6;--radius:18px;
-  --shadow:0 14px 40px rgba(10,26,51,.10);--shadow-lg:0 30px 70px rgba(3,12,28,.45);
-}
-html{scroll-behavior:smooth}
+:root{--navy:#0a1a33;--navy-2:#12305c;--accent:#ff6b35;--accent-2:#ffa94d;--ink:#0f172a;--muted:#64748b;--line:#e5eaf2;--bg:#f5f8fc;--ok:#10b981;--blue:#3b82f6;--radius:18px;--shadow:0 14px 40px rgba(10,26,51,.10);--shadow-lg:0 30px 70px rgba(3,12,28,.45)}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
 svg{display:block}
-button,input{font:inherit;color:inherit}
 .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
 .icon{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .icon-sm{width:16px;height:16px}.icon-lg{width:26px;height:26px}
 
-.site-header{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.site-header{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;gap:28px;padding:13px 22px;max-width:1180px;margin:0 auto}
 .brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--navy);font-weight:800;font-size:1.06rem}
 .brand .logo{width:40px;height:40px}
@@ -28,7 +22,7 @@ button,input{font:inherit;color:inherit}
 .nav-links a{text-decoration:none;font-size:.88rem;font-weight:600;color:#3d4d63}
 .nav-cta{background:var(--navy);color:#fff!important;padding:9px 18px;border-radius:999px;font-size:.85rem;font-weight:700}
 
-.hero{position:relative;overflow:hidden;color:#fff;padding:74px 22px 108px;background:radial-gradient(900px 420px at 78% -12%,rgba(255,107,53,.3),transparent 65%),radial-gradient(700px 400px at 8% 110%,rgba(56,132,255,.3),transparent 62%),linear-gradient(158deg,#08152b,#12305c 55%,#0a1a33)}
+.hero{position:relative;overflow:hidden;color:#fff;padding:74px 22px 120px;background:radial-gradient(900px 420px at 78% -12%,rgba(255,107,53,.3),transparent 65%),radial-gradient(700px 400px at 8% 110%,rgba(56,132,255,.3),transparent 62%),linear-gradient(158deg,#08152b,#12305c 55%,#0a1a33)}
 .hero-inner{position:relative;z-index:2;max-width:900px;margin:0 auto;text-align:center}
 .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:7px 15px;border-radius:999px;font-size:.76rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#cfe0ff}
 .pill .dot-live{width:7px;height:7px;border-radius:50%;background:#3ddc97;box-shadow:0 0 0 4px rgba(61,220,151,.22);animation:pulse 1.9s infinite}
@@ -42,7 +36,7 @@ button,input{font:inherit;color:inherit}
 .track-field input{border:0;outline:0;background:transparent;width:100%;padding:16px 0;font-size:1rem;font-weight:600}
 .btn-track{border:0;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,var(--accent),#ff8a3d);color:#fff;font-weight:800;padding:16px 30px;border-radius:14px;box-shadow:0 10px 24px rgba(255,107,53,.34)}
 
-.shipment{margin-top:-62px;position:relative;z-index:5;display:none}
+.shipment{margin-top:-70px;position:relative;z-index:5;display:none}
 .shipment.show{display:block}
 .card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
 .ship-head{padding:26px 28px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;background:linear-gradient(180deg,#fbfdff,#fff)}
@@ -55,7 +49,7 @@ button,input{font:inherit;color:inherit}
 .route-point{display:flex;gap:13px;align-items:flex-start}
 .route-point .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#fff;border:1px solid var(--line);color:var(--navy-2)}
 .route-line .bar{width:100%;height:5px;border-radius:99px;background:#e2e9f4;overflow:hidden}
-.route-line .bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--navy-2),var(--accent));transition:width 1.2s}
+.route-line .bar span{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--navy-2),var(--accent))}
 
 .ship-body{display:grid;grid-template-columns:1.35fr 1fr}
 .ship-col{padding:28px}
@@ -68,7 +62,7 @@ button,input{font:inherit;color:inherit}
 .timeline li:last-child::before{display:none}
 .timeline .dot{position:absolute;left:-34px;top:1px;width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid #d5dfee;display:grid;place-items:center}
 .timeline li.done .dot{background:var(--ok);border-color:var(--ok)}
-.timeline li.current .dot{background:var(--pickup);border-color:var(--pickup);box-shadow:0 0 0 5px rgba(59,130,246,.16)}
+.timeline li.current .dot{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0 5px rgba(59,130,246,.16)}
 .timeline h4{font-size:.94rem;font-weight:700;color:var(--navy)}
 .timeline p{font-size:.79rem;color:var(--muted)}
 
@@ -120,7 +114,7 @@ footer{background:#08152b;color:#93a8c6;padding:60px 0 0;margin-top:20px}
 <body>
 
 <svg style="display:none">
-  <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></symbol>
+  <symbol id="i-package" viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></symbol>
   <symbol id="i-plane" viewBox="0 0 24 24"><path d="M21.5 3.5L2.5 10.8l6.4 2.3 2.3 6.4L21.5 3.5z"/><path d="M8.9 13.1l4.5-4.5"/></symbol>
   <symbol id="i-truck" viewBox="0 0 24 24"><path d="M1.5 6.5h11v9h-11z"/><path d="M12.5 9.5h4l3.5 3.5v2.5h-7.5z"/><circle cx="5.5" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
   <symbol id="i-ship" viewBox="0 0 24 24"><path d="M3 14l1.6 5.5h14.8L21 14"/><path d="M5 14V8h14v6"/><path d="M12 4v4"/></symbol>
@@ -136,10 +130,10 @@ footer{background:#08152b;color:#93a8c6;padding:60px 0 0;margin-top:20px}
   <symbol id="i-fragile" viewBox="0 0 24 24"><path d="M12 3l-2 7h4l-2 7"/><path d="M5 10h14"/><path d="M5 14h14"/><path d="M5 18h14"/><path d="M5 22h14"/></symbol>
   <symbol id="i-upward" viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M8 7l4-4 4 4"/><path d="M8 13l4-4 4 4"/></symbol>
   <symbol id="i-dry" viewBox="0 0 24 24"><path d="M12 3a9 9 0 00-9 9v5a2 2 0 002 2h14a2 2 0 002-2v-5a9 9 0 00-9-9z"/><path d="M12 7v6"/><path d="M12 7a3 3 0 00-3 3"/></symbol>
-  <symbol id="i-package" viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></symbol>
   <symbol id="i-weight" viewBox="0 0 24 24"><path d="M12 3v2"/><path d="M8 8h8l1 12H7L8 8z"/><path d="M9 12h6"/></symbol>
   <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4M16 3v4"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8.2-8 9-4.5-.8-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></symbol>
 </svg>
 
 <header class="site-header">
@@ -186,7 +180,7 @@ footer{background:#08152b;color:#93a8c6;padding:60px 0 0;margin-top:20px}
         </div>
       </div>
       <div style="display:flex;gap:9px;align-items:center">
-        <span class="status-chip"><span class="dot-live" style="background:var(--pickup)"></span> Arrived Awaiting Pickup</span>
+        <span class="status-chip"><span class="dot-live" style="background:var(--blue)"></span> Arrived Awaiting Pickup</span>
         <button class="btn-ghost" id="copyBtn"><svg class="icon icon-sm"><use href="#i-copy"/></svg> Copy</button>
         <button class="btn-ghost" id="printBtn"><svg class="icon icon-sm"><use href="#i-print"/></svg> Print</button>
       </div>
@@ -203,8 +197,8 @@ footer{background:#08152b;color:#93a8c6;padding:60px 0 0;margin-top:20px}
       </div>
       <div class="route-line" style="text-align:center">
         <div style="width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid var(--line);margin:0 auto 8px;color:var(--accent)"><svg class="icon icon-sm"><use href="#i-plane"/></svg></div>
-        <div class="bar" id="progressBar"><span style="width:100%"></span></div>
-        <div id="etaText" style="font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:8px">Arrived 16 Oct 2026</div>
+        <div class="bar"><span></span></div>
+        <div style="font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:8px">Arrived 16 Oct 2026</div>
       </div>
       <div class="route-point" style="justify-content:flex-end;text-align:right">
         <div class="ic"><svg class="icon"><use href="#i-pin"/></svg></div>
@@ -297,7 +291,7 @@ footer{background:#08152b;color:#93a8c6;padding:60px 0 0;margin-top:20px}
   </div>
 </section>
 
-<footer>
+<footer id="support">
   <div class="wrap">
     <div class="foot-grid">
       <div>
@@ -316,79 +310,82 @@ footer{background:#08152b;color:#93a8c6;padding:60px 0 0;margin-top:20px}
 
 <script>
 (function(){
-  const form=document.getElementById('trackForm');
-  const input=document.getElementById('trackInput');
-  const btn=document.getElementById('trackBtn');
-  const panel=document.getElementById('shipmentPanel');
-  const wbNumber=document.getElementById('wbNumber');
-  const barcodeEl=document.getElementById('barcode');
-  const barcodeTx=document.getElementById('barcodeText');
-  const copyBtn=document.getElementById('copyBtn');
-  const printBtn=document.getElementById('printBtn');
-  const toast=document.getElementById('toast');
-  const toastMsg=document.getElementById('toastMsg');
-  const VALID='CJGKRS124876KR';
+  const form = document.getElementById('trackForm');
+  const input = document.getElementById('trackInput');
+  const btn = document.getElementById('trackBtn');
+  const panel = document.getElementById('shipmentPanel');
+  const wbNumber = document.getElementById('wbNumber');
+  const barcodeEl = document.getElementById('barcode');
+  const barcodeTx = document.getElementById('barcodeText');
+  const copyBtn = document.getElementById('copyBtn');
+  const printBtn = document.getElementById('printBtn');
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMsg');
+  const VALID = 'CJGKRS124876KR';
 
   let toastTimer;
-  function showToast(msg){
-    toastMsg.textContent=msg;
+  function showToast(msg) {
+    toastMsg.textContent = msg;
     toast.classList.add('show');
     clearTimeout(toastTimer);
-    toastTimer=setTimeout(()=>toast.classList.remove('show'),2200);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
   }
 
-  function renderBarcode(seed){
-    let hash=0;
-    for(let i=0;i<seed.length;i++) hash=(hash*31+seed.charCodeAt(i))>>>0;
-    barcodeEl.innerHTML='';
-    for(let i=0;i<48;i++){
-      const w=2+(hash*(i+1)%3);
-      const h=30+(hash*(i+3)%28);
-      const b=document.createElement('i');
-      b.style.width=w+'px';
-      b.style.height=h+'px';
+  function renderBarcode(seed) {
+    let hash = 0;
+    for (let i = 0; i < seed.length; i++) hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
+    barcodeEl.innerHTML = '';
+    for (let i = 0; i < 48; i++) {
+      const w = 2 + (hash * (i + 1) % 3);
+      const h = 30 + (hash * (i + 3) % 28);
+      const b = document.createElement('i');
+      b.style.width = w + 'px';
+      b.style.height = h + 'px';
       barcodeEl.appendChild(b);
     }
-    barcodeTx.textContent=seed;
+    barcodeTx.textContent = seed;
   }
 
-  form.addEventListener('submit',e=>{
+  form.addEventListener('submit', function(e) {
     e.preventDefault();
-    const value=input.value.trim().toUpperCase();
-    if(!value){
+    const raw = input.value || '';
+    const value = raw.trim().toUpperCase().replace(/\s+/g, '');
+    if (!value) {
       showToast('Please enter a tracking number');
       panel.classList.remove('show');
       return;
     }
-    if(value!==VALID){
+    if (value !== VALID) {
       showToast('Tracking code not found');
       panel.classList.remove('show');
       return;
     }
-    const orig=btn.innerHTML;
-    btn.disabled=true;
-    btn.innerHTML='<span>Locating…</span>';
-    setTimeout(()=>{
-      btn.disabled=false;
-      btn.innerHTML=orig;
-      wbNumber.textContent=value;
+    const orig = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<span>Locating…</span>';
+    setTimeout(function() {
+      btn.disabled = false;
+      btn.innerHTML = orig;
+      wbNumber.textContent = value;
       renderBarcode(value);
       panel.classList.add('show');
-      panel.scrollIntoView({behavior:'smooth'});
-      showToast('Tracking updated · '+value);
-    },700);
+      setTimeout(function() {
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+      showToast('Tracking updated · ' + value);
+    }, 650);
   });
 
-  copyBtn.addEventListener('click',async()=>{
-    try{
+  copyBtn.addEventListener('click', async function() {
+    try {
       await navigator.clipboard.writeText(wbNumber.textContent.trim());
       showToast('Tracking number copied');
-    }catch(e){
+    } catch (e) {
       showToast('Copy failed');
     }
   });
 
-  printBtn.addEventListener('click',()=>window.print());
+  printBtn.addEventListener('click', function() { window.print(); });
 })();
 </script>
 </body>
