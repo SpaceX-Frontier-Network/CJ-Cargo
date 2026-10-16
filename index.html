@@ -41,8 +41,6 @@ button,input{font:inherit;color:inherit}
 .track-field{display:flex;align-items:center;gap:11px;flex:1;padding:0 14px}
 .track-field input{border:0;outline:0;background:transparent;width:100%;padding:16px 0;font-size:1rem;font-weight:600}
 .btn-track{border:0;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,var(--accent),#ff8a3d);color:#fff;font-weight:800;padding:16px 30px;border-radius:14px;box-shadow:0 10px 24px rgba(255,107,53,.34)}
-.track-hint{margin-top:16px;font-size:.79rem;color:#8fa6c6}
-.track-hint button{background:none;border:0;color:var(--accent-2);font-weight:700;cursor:pointer;text-decoration:underline}
 
 .shipment{margin-top:-62px;position:relative;z-index:5;display:none}
 .shipment.show{display:block}
@@ -163,18 +161,17 @@ footer{background:#08152b;color:#93a8c6;padding:60px 0 0;margin-top:20px}
   <div class="hero-inner">
     <span class="pill"><span class="dot-live"></span> Live network · 214 countries</span>
     <h1>Track your cargo <em>anywhere</em>,<br>in real time.</h1>
-    <p class="sub">One tracking number for the full journey — air, sea, road, and last-mile.</p>
+    <p class="sub">Enter your tracking number to view shipment status, route, and full details.</p>
     <form class="track-box" id="trackForm">
       <div class="track-field">
         <svg class="icon"><use href="#i-search"/></svg>
-        <input type="text" id="trackInput" placeholder="Enter your tracking number">
+        <input type="text" id="trackInput" placeholder="Enter your tracking number" autocomplete="off">
       </div>
       <button type="submit" class="btn-track" id="trackBtn">
         <svg class="icon icon-sm"><use href="#i-search"/></svg>
         <span>Track Shipment</span>
       </button>
     </form>
-    <p class="track-hint">Try demo: <button type="button" id="demoBtn">CJGKRS124876KR</button></p>
   </div>
 </section>
 
@@ -185,7 +182,7 @@ footer{background:#08152b;color:#93a8c6;padding:60px 0 0;margin-top:20px}
         <div class="badge-icon"><svg class="icon icon-lg"><use href="#i-package"/></svg></div>
         <div>
           <div style="font-size:.68rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)">Waybill</div>
-          <div class="num" id="wbNumber" style="font-size:1.16rem;font-weight:800">CJGKRS124876KR</div>
+          <div class="num" id="wbNumber" style="font-size:1.16rem;font-weight:800"></div>
         </div>
       </div>
       <div style="display:flex;gap:9px;align-items:center">
@@ -264,7 +261,7 @@ footer{background:#08152b;color:#93a8c6;padding:60px 0 0;margin-top:20px}
           </div>
           <div class="barcode-strip">
             <div id="barcode"></div>
-            <div class="code-txt" id="barcodeText">CJGKRS124876KR</div>
+            <div class="code-txt" id="barcodeText"></div>
           </div>
         </div>
       </div>
@@ -326,10 +323,8 @@ footer{background:#08152b;color:#93a8c6;padding:60px 0 0;margin-top:20px}
   const wbNumber=document.getElementById('wbNumber');
   const barcodeEl=document.getElementById('barcode');
   const barcodeTx=document.getElementById('barcodeText');
-  const bar=document.getElementById('progressBar');
   const copyBtn=document.getElementById('copyBtn');
   const printBtn=document.getElementById('printBtn');
-  const demoBtn=document.getElementById('demoBtn');
   const toast=document.getElementById('toast');
   const toastMsg=document.getElementById('toastMsg');
   const VALID='CJGKRS124876KR';
@@ -382,11 +377,6 @@ footer{background:#08152b;color:#93a8c6;padding:60px 0 0;margin-top:20px}
       panel.scrollIntoView({behavior:'smooth'});
       showToast('Tracking updated · '+value);
     },700);
-  });
-
-  demoBtn.addEventListener('click',()=>{
-    input.value=VALID;
-    form.dispatchEvent(new Event('submit',{cancelable:true,bubbles:true}));
   });
 
   copyBtn.addEventListener('click',async()=>{
